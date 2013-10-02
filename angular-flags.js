@@ -4,7 +4,28 @@ angular.module('$featureFlags').config(['$routeProvider', function ($routeProvid
   $routeProvider.when("/featureFlags",
       {
         controller: "$featureFlagsCtrl",
-        templateUrl: "components/angular-flags/admin.html"
+        template: '\
+<h2><i>Feature flags console</i></h2> \
+  <table cellpadding="10"> \
+<tr ng-repeat="flag in flags.all()"> \
+  <td> \
+    <h3>{{flag.name}}</h3> \
+  </td> \
+  <td> \
+    <span ng-hide="flag.override" style="color:grey"> \
+      <input type="radio" ng-model="flag.default" name="{{flag.name}}-default" value="on" disabled/> on \
+      <input type="radio" ng-model="flag.default" name="{{flag.name}}-default" value="off" disabled/> off \
+    </span> \
+    <span ng-show="flag.override"> \
+      <input type="radio" ng-model="flag.override" name="{{flag.name}}-override" value="on" ng-change="flags.save()"/> on \
+      <input type="radio" ng-model="flag.override" name="{{flag.name}}-override" value="off" ng-change="flags.save()"/> off \
+    </span> \
+  </td> \
+  <td> \
+    <input type="checkbox" ng-checked="flag.override" ng-click="flags.toggleOverride(flag)"/> override? \
+  </td> \
+</tr> \
+</table>'
       }
   )
 }]);
