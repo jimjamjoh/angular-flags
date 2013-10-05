@@ -18,6 +18,8 @@ Have a look at the [reference app](https://github.com/jimjamjoh/angular-flags-ex
 To run the tests:
  
 `npm install -g bower karma`
+
 `bower install`
+
 `karma start`
 
