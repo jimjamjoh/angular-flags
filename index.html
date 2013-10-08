@@ -4,31 +4,32 @@
 
 <h1>How to use <a href="http://github.com/jimjamjoh/angular-flags">angular-flags</a></h1>
 <p/>
-Angular-flags is an implementation of <a href="http://martinfowler.com/bliki/FeatureToggle.html">feature flags</a> for an AngularJS app, designed to support <a href="http://paulhammant.com/blog/branch_by_abstraction.html">branch by abstraction</a> in service of <a href="http://paulhammant.com/2013/04/05/what-is-trunk-based-development/">trunk-based development</a>.  This cookie-based approach to feature flags management is a port of <a href="http://github.com/moredip/rack-flags">rack-flags</a>.  Its key strength is that the default feature flag setting can be overridden on a per-user basis with browser-cookies.
+Angular-flags is an implementation of <a href="http://martinfowler.com/bliki/FeatureToggle.html">feature flags</a> for an AngularJS app, designed to support <a href="http://paulhammant.com/2011/05/13/avoid-big-bang-for-branch-by-abstraction/">branch by abstraction</a> in service of <a href="http://paulhammant.com/2013/04/05/what-is-trunk-based-development/">trunk-based development</a>.  This cookie-based approach to feature flags management is a port of <a href="http://github.com/moredip/rack-flags">rack-flags</a>.  Its key strength is that the default feature flag setting can be overridden on a per-user basis with browser-cookies.
 <p/>&nbsp;<p/>
 
 <h2>Adding angular-flags to your app</h2>
 <p/>
 Angular-flags was designed to be simple to shim into an existing Angular app.  The rest of this page will describe the angular-flags <a href="http://github.com/jimjamjoh/angular-flags-example"/>reference app</a>, a simple <a href="http://yeoman.io/">yeoman-generated</a> angular app with angular-flags shimmed in.
-<p/>&nbsp;<p/>
 <ol>
-<li><i style="font-size: 125%">Download with bower</i>
-<p/><ul><li>Best:<p/>
-	add angular-flags to your <code>bower.json</code> file an run <code>bower install</code>
-	</li>
-	<li>Second best:<p/>
-	<code>bower install angular-flags</code>
-	</li>
-    </ul>
+<li><i style="font-size: 125%">Download angular-flags with <a href="http://bower.io">bower</a></i>
+<p/>Ensure you have bower installed with node (<code>npm install -g bower</code>), then
+<ul><li>Best:<p/>
+add angular-flags to your <code>bower.json</code> file an run <code>bower install</code>
 </li>
-<li><i style="font-size: 125%">Add base module dependency and initialize the default flags</i>
+<li>Second best:<p/>
+<code>bower install angular-flags</code>
+</li>
+</ul>
+<p/>&nbsp;<p/>
+</li>
+<li><i style="font-size: 125%">Add <code>$featureFlags</code> module dependency and initialise the default flags</i>
 <p/><img src="images/app.js.png"/>
-<p/>Initialisation is from a JSON array of flag objects defining "name" and "default" ("on" or "off") attributes.  Note that this example has the flags coded into the javascript, which is fine if your flags aren't mean't to change between deployments.  More dynamic flags are supported by simply using an AJAX resource to return the flags array for initialisation.
+<p/>Initialisation is from a JSON array of flag objects defining "name" and "default" ("on" or "off") attributes.  Note that this example has the flags coded into the javascript, which is fine if your flags aren't meant to change between deployments.  More dynamic flags are supported by simply using an AJAX resource to return the flags array for initialisation.
 <p/>&nbsp;<p/>
 </li>
 
-<li><i style="font-size: 125%">Querying flag state to show/hide features</i>
-<p/>Best practice for feature flags is to keep evaluation as close to the view as possible.  This is easily achieved with angular-flags by adding the $featureFlagsFactory onto your controller $scope and referencing it in your view.
+<li><i style="font-size: 125%">Query flag state by name to show/hide features</i>
+<p/>Best practice for feature flags is to keep evaluation as close to the view as possible.  This is easily achieved with angular-flags by adding the <code>$featureFlagsFactory</code> onto your controller <code>$scope</code> and referencing it in your view via the <code>ng-show</code> directive.
 <p/>In your controller:
 <p/><img src="images/main.js.png"/>
 <p/>And in your view:
@@ -37,8 +38,8 @@ Angular-flags was designed to be simple to shim into an existing Angular app.  T
 </li>
 </ol>
 
-<h2>Overriding flag settings to change the shown/hidden state of features</h2>
 <p/>&nbsp;<p/>
+<h2>Overriding flag settings to change the shown/hidden state of features</h2>
 <ol>
 <li><i style="font-size: 125%">When no flags are overriden</i>
 <p/><img src="images/no_cookies.png"/>
@@ -47,7 +48,7 @@ Angular-flags was designed to be simple to shim into an existing Angular app.  T
 </li>
 <li><i style="font-size: 125%">Viewing the Feature Flags admin console</i>
 <p/><img src="images/before_overriding.png"/>
-<p/>Angular-flags adds a /featureFlags route to your Angular app.  Navigating to this route shows all flags and their current on/off state.
+<p/>Angular-flags adds a #/featureFlags route to your Angular app.  Navigating to this route shows all flags and their current on/off state.
 <p/>&nbsp;<p/>
 </li>
 <li><i style="font-size: 125%">Overriding flags on the admin console</i>
@@ -57,7 +58,7 @@ Angular-flags was designed to be simple to shim into an existing Angular app.  T
 </li>
 <li><i style="font-size: 125%">Viewing the site with overridden flags</i>
 <p/><img src="images/with_overrides.png"/>
-<p/>Navigating back to the previous page shows the effect of the cookie overrides.  Obeying the overrides, "tacos" are now hidden but "ornaments" are shown.
+<p/>Navigating back to the previous page shows the effect of the cookie overrides.  Obeying the overrides, "tacos" is now hidden but "ornaments" is shown.
 <p/>&nbsp;<p/>
 </li>
 </ol>
