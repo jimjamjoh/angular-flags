@@ -12,6 +12,15 @@ Angular-flags is an implementation of <a href="http://martinfowler.com/bliki/Fea
 Angular-flags was designed to be simple to shim into an existing Angular app.  The rest of this page will describe the angular-flags <a href="http://github.com/jimjamjoh/angular-flags-example"/>reference app</a>, a simple <a href="http://yeoman.io/">yeoman-generated</a> angular app with angular-flags shimmed in.
 <p/>&nbsp;<p/>
 <ol>
+<li><i style="font-size: 125%">Download with bower</i>
+<p/><ul><li>Best:<p/>
+	add angular-flags to your <code>bower.json</code> file an run <code>bower install</code>
+	</li>
+	<li>Second best:<p/>
+	<code>bower install angular-flags</code>
+	</li>
+    </ul>
+</li>
 <li><i style="font-size: 125%">Add base module dependency and initialize the default flags</i>
 <p/><img src="images/app.js.png"/>
 <p/>Initialisation is from a JSON array of flag objects defining "name" and "default" ("on" or "off") attributes.  Note that this example has the flags coded into the javascript, which is fine if your flags aren't mean't to change between deployments.  More dynamic flags are supported by simply using an AJAX resource to return the flags array for initialisation.
